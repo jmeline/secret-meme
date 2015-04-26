@@ -49,6 +49,7 @@ class Solution {
         int count;
         for (int i = 0; i < cases; ++i) {
             String value = in.nextLine();
+            String original_value = value;
 
             count = 0;
             // first check if the string is a palindrom
@@ -61,24 +62,28 @@ class Solution {
 
                 // find the largest character
                 int index = getBiggestCharacterIndex(value);
+                
+                /* reduce it */
+
+                // convert index to a character
+                char c = convertCharacter(index)
+                // convert character to ascii value
+
+                // reduce ascii value by one
+                
+                // convert reduced ascii value back to character
+                // assign character to value[index]
+                
+                //value[index] = value.charAt(index)--;
+                
+                // check if palindrome 
+                // increment count by one
+                // repeat
+               
+                
                 while(index >= 97)
                 {
-                    /* reduce it */
-
-                    // convert index to a character
-                    char c = convertCharacter(index)
-                    // convert character to ascii value
-
-                    // reduce ascii value by one
-                    
-                    // convert reduced ascii value back to character
-                    // assign character to value[index]
-                    
-                    value[index] = value.charAt(index)--;
-                    
-                    // check if palindrome 
-                    // repeat
-                }
+               }
             }
         }
         System.out.println("Got String: " + value);
