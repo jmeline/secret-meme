@@ -61,15 +61,26 @@ class Solution {
                 int len = value.length();
 
                 // find the largest character
-                int index = getBiggestCharacterIndex(value);
+                int greatestIndex = getBiggestCharacterIndex(value);
                 
-                /* reduce it */
+
+                // 1. a b c <- find the index of the largest character
+                // while ascii value of index of largest character in string is greater than 97
+                //  2.a C-> B lower ascii value by one
+                //  2.b Check if resulting change makes string a palidrome
+                //  2.c if not, continue.
+                //  If none of the changes make the string a palidrome, find the next
+                //      index of the largest character
 
                 // convert index to a character
-                char c = convertCharacter(index)
+                char c = convertCharacter(greatestIndex)
                 // convert character to ascii value
+                int ascii_value = getCharacter(c);
 
                 // reduce ascii value by one
+
+                replace(value, greatestIndex, ascii_value-1
+
                 
                 // convert reduced ascii value back to character
                 // assign character to value[index]
