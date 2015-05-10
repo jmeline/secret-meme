@@ -29,6 +29,10 @@ class Solution {
         }
         return highestCharacter;
     }
+    public static char getCharFromIndex(String value, int index)
+    {
+        return value[index];
+    }
 
     // helper functions
     public static int getCharacter(char c) {
@@ -51,7 +55,6 @@ class Solution {
             String value = in.nextLine();
             String original_value = value;
 
-            count = 0;
             // first check if the string is a palindrom
             if (isPalindrome(value)){
                 // System.out.println(value + " is a palindrome");
@@ -60,42 +63,24 @@ class Solution {
                 System.out.println(value + " isn't a palindrome");
                 int len = value.length();
 
-                // find the largest character
-                int greatestIndex = getBiggestCharacterIndex(value);
-                
-
-                // 1. a b c <- find the index of the largest character
-                // while ascii value of index of largest character in string is greater than 97
-                //  2.a C-> B lower ascii value by one
-                //  2.b Check if resulting change makes string a palidrome
-                //  2.c if not, continue.
-                //  If none of the changes make the string a palidrome, find the next
-                //      index of the largest character
-
-                // convert index to a character
-                char c = convertCharacter(greatestIndex)
-                // convert character to ascii value
-                int ascii_value = getCharacter(c);
-
-                // reduce ascii value by one
-
-                replace(value, greatestIndex, ascii_value-1
-
-                
-                // convert reduced ascii value back to character
-                // assign character to value[index]
-                
-                //value[index] = value.charAt(index)--;
-                
-                // check if palindrome 
-                // increment count by one
-                // repeat
-               
-                
-                while(index >= 97)
+                for(int j = 0; j < len; j++)
                 {
-               }
-            }
+                    // find the largest character
+                    int greatestIndex = getBiggestCharacterIndex(value);
+
+                    // 1. a b c <- find the index of the largest character
+                    // while ascii value of index of largest character in string is greater than 97
+                    int ascii_value = (int)getCharFromIndex(value, greatestIndex); 
+                    while(ascii_value > 97)
+                    {
+                        replace(value, greatestIndex, convertCharacter(--ascii_value));
+                        if(isPalindrome(value))
+                            System.out.println(count);
+                        count++;
+                    }
+                }
+                
+           }
         }
         System.out.println("Got String: " + value);
 
