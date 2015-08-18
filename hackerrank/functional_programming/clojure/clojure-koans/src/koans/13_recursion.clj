@@ -3,21 +3,35 @@
 
 (defn is-even? [n]
   (if (= n 0)
-    __
-    (___ (is-even? (dec n)))))
+    true
+    (not (is-even? (dec n)))))
 
 (defn is-even-bigint? [n]
-  (loop [n   n
+  (loop [n n
          acc true]
     (if (= n 0)
-      __
+      acc
       (recur (dec n) (not acc)))))
 
 (defn recursive-reverse [coll]
-  __)
+  (loop [collection coll reversed ()]
+    (if (= collection ())
+      reversed
+      (recur (rest collection) ( cons (first collection) reversed)))))
 
 (defn factorial [n]
-  __)
+  ; set result to be 1
+  ; set n to be n
+  (loop [result 1
+         n n]
+    (if (= n 0)
+      ; base case
+      ; return result
+      result
+      ; else dec n and multiple result by n
+      ; ** Position matters! result was created before n, result's modification comes first, then the changes to n
+      ; failure to do this will result in headaches and heartattacks
+      (recur (* n result) (dec n)))))
 
 (meditations
   "Recursion ends with a base case"
