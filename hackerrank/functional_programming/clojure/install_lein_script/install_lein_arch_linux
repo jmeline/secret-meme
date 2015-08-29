@@ -1,0 +1,11 @@
+1: Save the lein file into your ~/bin directory: https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+2: Change the permissions of the lein file to make it executable (chmod 755 ~/bin/lein)
+3: Open lein with a text editor
+4: On line 116, change .jar to .zip, so that it should be LEIN_JAR="$LEIN_HOME/self-installs/leiningen-$LEIN_VERSION-standalone.zip"
+Download Leiningen 2.5.2 from GitHub. https://github.com/technomancy/leiningen/releases/
+Put the zip file leiningen-2.5.2-standalone.zip into ~/.lein/self-installs (do not unzip - create the directory if it doesn't exist - this is a hidden directory, in Gnome Files, hit Ctrl+H to see it)
+To initiate your first project: lein new MyFirstLeinProject
+
+
+Guide found here: http://stackoverflow.com/questions/25225241/failing-to-download-leiningen-standalone-jar-file
+Done!
