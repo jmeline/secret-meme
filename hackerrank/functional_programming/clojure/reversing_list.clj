@@ -1,14 +1,13 @@
 #!/usr/local/bin env clj
 (def example (int 35231))
+(def example2 (int 1051986650))
 
-(defn digitize
-  ; Given a non-negative integer, return an array containing a list of independent digits in reverse order
-  [example]
-  (loop [x 1234]
-    (when (> x 0 )
-      (print (str (mod x 10) " "))
-      (recur (quot x 10)))))
-(println (digitize example) (str "Hello" ))
+(defn digitize [n]
+  (loop [results []
+         x n]
+    (let [results (conj results (mod x 10))]
+      (if (>= x 10)
+        (recur results (quot x 10))
+        results))))
 
-
-
+(println (digitize example))
