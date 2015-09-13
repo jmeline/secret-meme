@@ -26,22 +26,29 @@
 
 (defn is-divisible-by-7 [n]
   "Returns true if n % 7 == 0"
-  (= (= (mod n 7) 0) 0))
+  (= (mod n 7) 0))
+
+(defn is-within-limit [n]
+  "Checks whether a number is between 0 and 99"
+  (and (<= n 99) (>= n 0)))
 
 (defn seven [m]
-  (loop [steps 1]
-    (let [x (quot m 10)
-          y (* (mod m 10) 2)
-          res (- x y)]
-      (if (is-divisible-by-7 res)
-          (list res steps)))
-      ;; (if-not (and (>= x 0) (< x 99))
-      ;; )
-    (recur (inc steps))))
+  (loop [steps 0 value m]
+    ;; (println "steps: " steps " value: " value)
+    (if (is-within-limit value)
+      (if (is-divisible-by-7 value)
+        (list value steps)
+        (list value steps))
+        ;; (str "Limited reached: " value " at step: " steps))
+      (let [x (quot value 10) y (* (mod value 10) 2) res (- x y)]
+        ;; (println "x: " x " y: " y " res: " res)
+        (recur (inc steps) res)))))
 
 ;; testing
 (let [v 371 x (seven v) y [35 1]] (println v ": " x "=> " y "? " (= x y)))
 (let [v 1603 x (seven v) y [7 2]] (println  v ": " x "=> " y "? " (= x y)))
+(let [v 477557101 x (seven v) y [28 7]] (println  v ": " x "=> " y "? " (= x y)))
+(let [v 2937633 x (seven v) y [18 5]] (println  v ": " x "=> " y "? " (= x y)))
 
 
 
