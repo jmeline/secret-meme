@@ -32,23 +32,66 @@
   "Checks whether a number is between 0 and 99"
   (and (<= n 99) (>= n 0)))
 
+;; (defn seven [m]
+;;   (loop [steps 0 value m]
+;;     (println "steps: " steps " value: " value)
+;;     (if (is-within-limit value)
+;;       (if (is-divisible-by-7 value)
+;;         (list value steps)
+;;         (list value steps))
+;;       (let [x (quot value 10) y (* (mod value 10) 2) res (- x y)]
+;;         (println "x: " x " y: " y " res: " res)
+;;         (recur (inc steps) res)))))
+
+;; (defn seven [m]
+;;   (loop [steps 1 value m]
+;;     (println "steps: " steps " value: " value)
+;;     (let [x (quot value 10)
+;;           y (* (mod value 10) 2)
+;;           res (- x y)]
+;;       (println "x: " x " y: " y " res: " res)
+;;       (if (is-within-limit res)
+;;         (if (is-within-limit x)
+;;           (list res steps)
+;;           (recur (inc steps) res))
+;;         (list value steps)))))
+
+;; (defn seven [m]
+;;   (loop [steps 1 value m]
+;;     (println "steps: " steps " value: " value)
+;;     (let [x (quot value 10) y (* (mod value 10) 2) res (- x y)]
+;;       (if (> res 99)
+;;           (recur (inc steps) res)
+;;           (list res steps)))))
+;;
+
 (defn seven [m]
   (loop [steps 0 value m]
-    ;; (println "steps: " steps " value: " value)
-    (if (is-within-limit value)
-      (if (is-divisible-by-7 value)
-        (list value steps)
-        (list value steps))
-        ;; (str "Limited reached: " value " at step: " steps))
-      (let [x (quot value 10) y (* (mod value 10) 2) res (- x y)]
-        ;; (println "x: " x " y: " y " res: " res)
+    (println "steps: " steps " value: " value)
+    (if (< value 99)
+      [value steps]
+      (let [x (quot value 10)
+            y (* (mod value 10) 2)
+            res (- x y)]
         (recur (inc steps) res)))))
+
+(defn seven [m]
+  (defn seveni [m steps]
+    (if (<= m 99)
+      [m steps]
+      (let [x (mod m 10)
+            m (- (/ (- m x) 10) (* 2 x))]
+        (seveni m (inc steps)))))
+  (seveni m 0))
 
 ;; testing
 (let [v 371 x (seven v) y [35 1]] (println v ": " x "=> " y "? " (= x y)))
 (let [v 1603 x (seven v) y [7 2]] (println  v ": " x "=> " y "? " (= x y)))
 (let [v 477557101 x (seven v) y [28 7]] (println  v ": " x "=> " y "? " (= x y)))
 (let [v 2937633 x (seven v) y [18 5]] (println  v ": " x "=> " y "? " (= x y)))
+(let [v 1017915 x (seven v) y [90 4]] (println  v ": " x "=> " y "? " (= x y)))
+(let [v 1577883 x (seven v) y [-3 5]] (println  v ": " x "=> " y "? " (= x y)))
+(let [v 0 x (seven v) y [0 0]] (println  v ": " x "=> " y "? " (= x y)))
 
 
 
